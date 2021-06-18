@@ -1,26 +1,26 @@
 <div class="template">
-    <button class="btn1">
+    <button id="button1">
         <span><?= $block->escapeHtml(__('Open Modal')) ?></span>
     </button>
 
-    <button class="btn2">
+    <button id="button2">
         <span><?= $block->escapeHtml(__('Open Custom Login Modal')) ?></span>
     </button>
 
-    <button class="btn3">
+    <button id="button3">
         <span><?= $block->escapeHtml(__('Open Magento Login Modal')) ?></span>
     </button>
 
-    <div class="btn2_promt">
+    <div id="modal1">
         <div class="modal-body-content">
             <h2><?= $block->escapeHtml(__('Title')) ?></h2>
             <p><?= $block->escapeHtml(__('Content')) ?></p>
         </div>
     </div>
 
-    <div class="login_promt">
+    <div id="modal2">
         <div class="modal-body-content">
-            <div class="login-modal" class='authentication-popup-template' data-bind="scope: 'authentication-popup'">
+            <div class="login-modal" id='authentication-popup-template' data-bind="scope: 'authentication-popup'">
                 <!-- ko template: getTemplate() -->
                 <!-- /ko  -->
                 <script type="text/x-magento-init">
@@ -30,7 +30,7 @@
                                 "components": {
                                     "authentication-popup": {
                                         "component": "AHT_FrontendTest/js/authentication-popup",
-                                        "template" : "AHT_FrontendTest/modal",
+                                        "template" : "AHT_FrontendTest/authentication-popup",
                                         "children": {
                                             "messages":{
                                                 "component":"Magento_Ui/js/view/messages",
@@ -46,7 +46,6 @@
             </div>
         </div>
     </div>
-
 </div>
 <script type="text/javascript">
     require([
@@ -65,7 +64,7 @@
                     this.closeModal();
                 }
             }]
-        }, $('.btn2_promt'));
+        }, $('#modal1'));
 
         var popup2 = modal({
             type: 'popup',
@@ -78,17 +77,17 @@
                     this.closeModal();
                 }
             }]
-        }, $('.login_promt'));
+        }, $('#modal2'));
 
-        $(".btn1").click(function() {
-            $('.btn2_promt').modal('openModal');
+        $("#button1").click(function() {
+            $('#modal1').modal('openModal');
         });
 
-        $(".btn2").click(function() {
-            $('.login_promt').modal('openModal');
+        $("#button2").click(function() {
+            $('#modal2').modal('openModal');
         });
 
-        $(".btn3").click(function() {
+        $("#button3").click(function() {
             auth.showModal();
         });
     })
